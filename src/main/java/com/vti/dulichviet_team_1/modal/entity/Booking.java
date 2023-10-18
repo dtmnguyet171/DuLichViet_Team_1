@@ -3,26 +3,43 @@ package com.vti.dulichviet_team_1.modal.entity;
 import lombok.Data;
 
 import javax.persistence.*;
+import java.time.LocalDate;
+
 
 @Data
 @Entity
 @Table(name = "`booking`")
 public class Booking {
-  @Id
-  @Column(name = "`id`")
-  private int id;
 
-  @Column(name = "`note`")
-  private String note;
 
-  @ManyToOne()
-  @JoinColumn(name = "`account_id`")
-  private Account account;
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name = "BookingId")
+    private int id;
+    @Column(name = "Note", length = 500)
+    private String note;
 
-  @ManyToOne()
-  @JoinColumn(name = "`tour_id`")
-  private Tour tour;
+    @ManyToOne(cascade = CascadeType.DETACH)
+    @JoinColumn(name = "AccountId")
+    private Account accountId ;
 
-  @Column(name = "`status`")
-  private BookingStatus status;
+    @ManyToOne(cascade = CascadeType.DETACH)
+    @JoinColumn(name = "TourId")
+    private Tour tourId;
+
+    @Enumerated(EnumType.STRING)
+    @Column(name = "STATUS")
+    private BookingStatus status;
+
+    @Column(name = "Price")
+    private double price;
+
+    @Column(name = "BookingDate")
+    private LocalDate bookingDate;
+
+    @Column(name = "GuestSize")
+    private Integer guestSize;
+
+
+
 }

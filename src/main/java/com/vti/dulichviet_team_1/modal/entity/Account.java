@@ -9,7 +9,6 @@ import javax.persistence.*;
 @Table(name = "`account`")
 public class Account {
   @Id
-  @Column(name = "`id`")
   @GeneratedValue(strategy = GenerationType.IDENTITY)
   private int id;
 
