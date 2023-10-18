@@ -13,33 +13,37 @@ public class Tour {
   @GeneratedValue(strategy = GenerationType.IDENTITY)
   private int id;
 
-  @Column(name = "`title`")
+  @Column(name = "`title`", nullable = false)
   private String title;
 
-  @Column(name = "`type`")
+  @Column(name = "`type`", nullable = false)
+  @Enumerated(EnumType.STRING)
   private Type type;
 
-  @Column(name = "`depart`")
+  @Column(name = "`depart`", nullable = false)
   private String depart;
 
-  @Column(name = "`arrival`")
+  @Column(name = "`arrival`", nullable = false)
   private String arrival;
 
-  @Column(name = "`duration`")
+  @Column(name = "`duration`", nullable = false)
   private int duration;
 
-  @Column(name = "`transport`")
+  @Column(name = "`transport`", nullable = false)
+  @Enumerated(EnumType.STRING)
+
   private Transport transport;
 
-  @Column(name = "`content`")
+  @Column(name = "`content`", nullable = false)
   private String content;
 
-  @Column(name = "`image`")
+  @Column(name = "`image`", nullable = false)
   private String image;
 
-  @Column(name = "`price`")
+  @Column(name = "`price`", nullable = false)
   private int price;
 
-  @Column(name = "`status`")
+  @Column(name = "`status`", nullable = false)
+  @Enumerated(EnumType.STRING)
   private TourStatus status;
 }
