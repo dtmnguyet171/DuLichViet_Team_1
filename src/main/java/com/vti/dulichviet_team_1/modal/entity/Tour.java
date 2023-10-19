@@ -4,54 +4,49 @@ import lombok.Data;
 
 import javax.persistence.*;
 
-
-@Entity
-@Table(name = "TOUR")
 @Data
+@Entity
+@Table(name = "`tour`")
 public class Tour {
-
-
   @Id
+  @Column(name = "`id`")
   @GeneratedValue(strategy = GenerationType.IDENTITY)
-  @Column(name = "TOURID")
   private int id;
 
-  @Column(name = "TITLE", length = 200, nullable = false)
+  @Column(name = "`title`", nullable = false)
   private String title;
 
+  @Column(name = "`type`", nullable = false)
   @Enumerated(EnumType.STRING)
-  @Column(name = "TYPE")
   private Type type;
 
-  @Column(name = "DEPART", length = 50, nullable = false)
+  @Column(name = "`depart`", nullable = false)
   private String depart;
 
-  @Column(name = "ARRIVAL", length = 50, nullable = false)
-  private  String arrival;
+  @Column(name = "`arrival`", nullable = false)
+  private String arrival;
 
-  @Column(name = "DURATION",nullable = false)
+  @Column(name = "`duration`", nullable = false)
   private int duration;
 
+  @Column(name = "`transport`", nullable = false)
   @Enumerated(EnumType.STRING)
-  @Column(name = "TRANSPORT", nullable = false)
+
   private Transport transport;
 
-  @Column(name = "CONTENT", nullable = false)
+  @Column(name = "`content`", nullable = false)
   private String content;
 
-  @Column(name = "IMAGE", length = 500, nullable = false)
+  @Column(name = "`image`", nullable = false)
   private String image;
 
-  @Column(name = "PRICE", nullable = false)
+  @Column(name = "`price`", nullable = false)
   private int price;
 
+  @Column(name = "`status`", nullable = false)
   @Enumerated(EnumType.STRING)
-  @Column(name = "STATUS", columnDefinition = "AVAILABLE")
   private TourStatus status;
 
   @Column(name = "max_guest_size",nullable = false)
   private Integer maxGuestSize;
-
-
-
 }

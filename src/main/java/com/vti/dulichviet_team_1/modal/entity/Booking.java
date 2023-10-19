@@ -5,41 +5,34 @@ import lombok.Data;
 import javax.persistence.*;
 import java.time.LocalDate;
 
-
 @Data
 @Entity
 @Table(name = "`booking`")
 public class Booking {
+  @Id
+  @Column(name = "`id`")
+  private int id;
 
+  @Column(name = "`note`")
+  private String note;
 
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "BookingId")
-    private int id;
-    @Column(name = "Note", length = 500)
-    private String note;
+  @ManyToOne()
+  @JoinColumn(name = "`account_id`")
+  private Account account;
 
-    @ManyToOne(cascade = CascadeType.DETACH)
-    @JoinColumn(name = "AccountId")
-    private Account accountId ;
+  @ManyToOne()
+  @JoinColumn(name = "`tour_id`")
+  private Tour tour;
 
-    @ManyToOne(cascade = CascadeType.DETACH)
-    @JoinColumn(name = "TourId")
-    private Tour tourId;
+  @Column(name = "`status`")
+  private BookingStatus status;
 
-    @Enumerated(EnumType.STRING)
-    @Column(name = "STATUS")
-    private BookingStatus status;
+  @Column(name = "price")
+  private double price;
 
-    @Column(name = "Price")
-    private double price;
+  @Column(name = "booking_date")
+  private LocalDate bookingDate;
 
-    @Column(name = "BookingDate")
-    private LocalDate bookingDate;
-
-    @Column(name = "GuestSize")
-    private Integer guestSize;
-
-
-
+  @Column(name = "guest_size")
+  private Integer guestSize;
 }
