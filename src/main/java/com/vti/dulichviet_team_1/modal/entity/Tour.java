@@ -13,37 +13,33 @@ public class Tour {
   @GeneratedValue(strategy = GenerationType.IDENTITY)
   private int id;
 
-  @Column(name = "`title`", nullable = false)
-  private String title;
-
-  @Column(name = "`type`", nullable = false)
   @Enumerated(EnumType.STRING)
   private Type type;
 
-  @Column(name = "`depart`", nullable = false)
+  @Column(name = "DEPART", length = 50, nullable = false, nullable = false)
   private String depart;
 
-  @Column(name = "`arrival`", nullable = false)
-  private String arrival;
+  @Column(name = "ARRIVAL", length = 50, nullable = false, nullable = false)
+  private  String arrival;
 
-  @Column(name = "`duration`", nullable = false)
+  @Column(name = "DURATION",nullable = false, nullable = false)
   private int duration;
 
-  @Column(name = "`transport`", nullable = false)
+  @Enumerated(EnumType.STRING)
+  @Column(name = "TRANSPORT", nullable = false, nullable = false)
   @Enumerated(EnumType.STRING)
 
   private Transport transport;
 
-  @Column(name = "`content`", nullable = false)
+  @Column(name = "CONTENT", nullable = false, nullable = false)
   private String content;
 
-  @Column(name = "`image`", nullable = false)
+  @Column(name = "IMAGE", length = 500, nullable = false, nullable = false)
   private String image;
 
-  @Column(name = "`price`", nullable = false)
+  @Column(name = "PRICE", nullable = false, nullable = false)
   private int price;
 
-  @Column(name = "`status`", nullable = false)
   @Enumerated(EnumType.STRING)
   @Column(name = "`maxGuestSize`", nullable = false)
   private int maxGuestSize;

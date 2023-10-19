@@ -11,4 +11,5 @@ spring.mvc.pathmatch.matching-strategy = ANT_PATH_MATCHER
 <<<<<<< HEAD
 spring.jpa.hibernate.ddl-auto=update
 =======
->>>>>>> 0b8b2d9e7b6a14cb67835a63328d0876d9d5b2c8
+spring.jpa.hibernate.ddl-auto=create-drop
+>>>>>>> e4e1a4b3c3c41aeb4fee3774ead81c2eea95c84d
