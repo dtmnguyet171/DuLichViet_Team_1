@@ -9,15 +9,17 @@ import com.vti.dulichviet_team_1.modal.dto.ViewListRequestDto;
 import com.vti.dulichviet_team_1.modal.entity.Tour;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
+import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 
+import javax.validation.Valid;
 import java.util.List;
 import java.util.Optional;
 
 @RestController
 @RequestMapping("/api/v1/tour")
 @CrossOrigin("*")
-
+@Validated
 public class TourController {
 
     @Autowired
@@ -33,12 +35,12 @@ public class TourController {
     }
 
     @PostMapping("/create_tour")
-    public Tour createTour(@RequestBody TourRequestCreateDto tourRequestCreateDto) {
+    public Tour createTour(@RequestBody @Valid TourRequestCreateDto tourRequestCreateDto) {
         return tourService.createTour(tourRequestCreateDto);
     }
 
     @PutMapping("/update_tour")
-    public Tour updateTour(@RequestBody TourRequestUpdateDto tourRequestUpdateDto) {
+    public Tour updateTour(@RequestBody @Valid TourRequestUpdateDto tourRequestUpdateDto) {
         return tourService.updateTour(tourRequestUpdateDto);
     }
 
