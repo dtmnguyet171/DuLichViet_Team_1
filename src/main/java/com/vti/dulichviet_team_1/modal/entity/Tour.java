@@ -46,4 +46,7 @@ public class Tour {
   @Column(name = "`status`", nullable = false)
   @Enumerated(EnumType.STRING)
   private TourStatus status;
+
+  @Column(name = "`maxGuestSize`", nullable = false)
+  private int maxGuestSize;
 }

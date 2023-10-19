@@ -21,7 +21,7 @@ public class TourRequestCreateDto {
     private String title;
 
 
-    @Pattern(regexp = "HOT_TOUR | TEAM_BUILDING | HOLIDAY | SHORT_TOUR")
+//    @Pattern(regexp = "HOT_TOUR | TEAM_BUILDING | HOLIDAY | SHORT_TOUR")
     private Type type;
 
     @NotBlank(message = "The depart Mustn't be null value")
@@ -32,11 +32,11 @@ public class TourRequestCreateDto {
 
     private String arrival;
 
-    @NotBlank(message = "The duration mustn't be null value")
+//    @NotBlank(message = "The duration mustn't be null value")
 
     private int duration;
 
-    @Pattern(regexp = "AIRPLANE | CAR | TRAIN ")
+//    @Pattern(regexp = "AIRPLANE | CAR | TRAIN ")
 
     private Transport transport;
 
@@ -48,13 +48,17 @@ public class TourRequestCreateDto {
 
     private String image;
 
-    @NotBlank(message = "The price mustn't be null value")
+//    @NotBlank(message = "The price mustn't be null value")
 
     private int price;
 
-    @Pattern(regexp = "AVAILABLE | UNAVAILABLE ")
+//    @Pattern(regexp = "AVAILABLE | UNAVAILABLE ")
 
     private TourStatus status;
+
+//    @NotBlank(message = "The number of people booking the tour cannot be left blank")
+    private int maxGuestSize;
+
 
 
 }
