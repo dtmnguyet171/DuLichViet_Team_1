@@ -8,4 +8,7 @@ spring.datasource.driver-class-name=com.mysql.jdbc.Driver
 
 spring.jpa.hibernate.ddl-auto=update
 spring.mvc.pathmatch.matching-strategy = ANT_PATH_MATCHER
+<<<<<<< HEAD
 spring.jpa.hibernate.ddl-auto=update
+=======
+>>>>>>> 0b8b2d9e7b6a14cb67835a63328d0876d9d5b2c8
