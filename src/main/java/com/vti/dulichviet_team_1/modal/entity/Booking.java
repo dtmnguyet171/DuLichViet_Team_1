@@ -1,6 +1,8 @@
 package com.vti.dulichviet_team_1.modal.entity;
 
 import lombok.Data;
+import org.hibernate.annotations.NotFound;
+import org.hibernate.annotations.NotFoundAction;
 
 import javax.persistence.*;
 import java.time.LocalDate;
@@ -10,6 +12,7 @@ import java.time.LocalDate;
 @Table(name = "`booking`")
 public class Booking {
   @Id
+  @GeneratedValue(strategy = GenerationType.IDENTITY)
   @Column(name = "`id`")
   private int id;
 
@@ -20,11 +23,13 @@ public class Booking {
   @JoinColumn(name = "`account_id`")
   private Account account;
 
-  @ManyToOne()
+  @ManyToOne(fetch = FetchType.LAZY)
+  @NotFound(action = NotFoundAction.IGNORE)
   @JoinColumn(name = "`tour_id`")
   private Tour tour;
 
   @Column(name = "`status`")
+  @Enumerated(EnumType.STRING)
   private BookingStatus status;
 
   @Column(name = "price")

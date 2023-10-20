@@ -1,19 +1,17 @@
-package com.vti.dulichviet_team_1.service.impl;
+package com.vti.dulichviet_team_1.Service.impl;
 
+import com.vti.dulichviet_team_1.Repository.AccountRepository;
+import com.vti.dulichviet_team_1.Repository.BookingRepository;
+import com.vti.dulichviet_team_1.Repository.TourRepository;
+import com.vti.dulichviet_team_1.Repository.specification.BookingSpecification;
+import com.vti.dulichviet_team_1.modal.dto.TourBookingCount;
 import com.vti.dulichviet_team_1.modal.entity.Account;
 import com.vti.dulichviet_team_1.modal.entity.Booking;
-
 import com.vti.dulichviet_team_1.modal.entity.BookingStatus;
 import com.vti.dulichviet_team_1.modal.entity.Tour;
-import com.vti.dulichviet_team_1.repository.AccountRepository;
-import com.vti.dulichviet_team_1.repository.BookingRepository;
-import com.vti.dulichviet_team_1.repository.Specification.BookingSpecification;
-import com.vti.dulichviet_team_1.repository.TourRepository;
 import com.vti.dulichviet_team_1.request.BookingCreateRequest;
 import com.vti.dulichviet_team_1.request.BookingSearchRequest;
 import com.vti.dulichviet_team_1.request.BookingUpdateRequest;
-import com.vti.dulichviet_team_1.service.IBookingService;
-
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
@@ -22,11 +20,12 @@ import org.springframework.data.domain.Sort;
 import org.springframework.data.jpa.domain.Specification;
 import org.springframework.stereotype.Service;
 
+import java.time.LocalDate;
 import java.util.List;
 import java.util.Optional;
 
 @Service
-public class BookingService implements IBookingService {
+public class BookingService implements com.vti.dulichviet_team_1.service.IBookingService {
 
   @Autowired
   BookingRepository bookingrepository;
@@ -151,17 +150,31 @@ public class BookingService implements IBookingService {
   public List<Booking> getBookingHistoryByAccount(Account account) {
     return bookingrepository.findByAccountId(account);
   }
+//hien thi danh sach booking theo nam
+  @Override
+  public List<Booking> getBookingInYear(int year) {
+    LocalDate startDate = LocalDate.of(year,1,1);
+    LocalDate endDate =  LocalDate.of(year,12,31);
+    return bookingrepository.findByBookingDateBetween(startDate,endDate);
+  }
 
+// tinh tong sotien theo thang va nam
+  @Override
+  public double manyToMonth(int year, int month) {
+    LocalDate startDate = LocalDate.of(year,month,1);
+    LocalDate endDate = startDate.plusMonths(1).minusDays(1);
+    List<Booking> bookingInMonth = bookingrepository.findByBookingDateBetween(startDate,endDate);
+    double totalAmouth = 0.0; // gia tri ban dau
+    for (Booking booking:bookingInMonth){
+      totalAmouth+=booking.getPrice();
+    }
+    return totalAmouth;
+  }
 
-
-//    @Override
-//    public Page<Booking> finBookings( BookingSearch bookingSearch) {
-//        Pageable pageable = PageRequest.of(bookingSearch.getPage(),bookingSearch.getSize(), Sort.by(bookingSearch.getSort()));
-//
-//        return bookingrepository.findByAccountId_EmailAndAccountId_UsernameAndAccountId_FullnameAndAccountId_PhoneAndStatus(bookingSearch.getEmail(),
-//                bookingSearch.getUsername(),bookingSearch.getFullname(),bookingSearch.getPhone(),bookingSearch.getStatus(),pageable
-//        );
-//    }
+  @Override
+  public List<TourBookingCount> getMostBookedTours() {
+    return bookingrepository.getMostBookedTours();
+  }
 
 
 //

@@ -1,18 +1,16 @@
-package com.vti.dulichviet_team_1.controller;
+package com.vti.dulichviet_team_1.Controller;
 
 
+
+import com.vti.dulichviet_team_1.Service.impl.BookingService;
+import com.vti.dulichviet_team_1.modal.dto.TourBookingCount;
 import com.vti.dulichviet_team_1.modal.entity.Account;
 import com.vti.dulichviet_team_1.modal.entity.Booking;
-import com.vti.dulichviet_team_1.modal.entity.BookingStatus;
 import com.vti.dulichviet_team_1.request.BookingCreateRequest;
 import com.vti.dulichviet_team_1.request.BookingSearchRequest;
 import com.vti.dulichviet_team_1.request.BookingUpdateRequest;
-import com.vti.dulichviet_team_1.service.impl.BookingService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
-import org.springframework.data.domain.PageRequest;
-import org.springframework.data.domain.Pageable;
-import org.springframework.data.domain.Sort;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -63,10 +61,7 @@ public class BookingController {
         return ResponseEntity.noContent().build();
     }
 
-//    @GetMapping
-//    public Page<Booking> viewBookings(@RequestBody BookingSearch bookingSearch){
-//        return bookingService.finBookings(bookingSearch);
-//    }
+
 
     // tìm dang sách booking từng account
     @GetMapping("/history/{accountId}")
@@ -76,26 +71,23 @@ public class BookingController {
         List<Booking> bookingHistory = bookingService.getBookingHistoryByAccount(account);
         return ResponseEntity.ok(bookingHistory);
     }
+// hien thi booking theo nam
 
+    @GetMapping("/revenue-by-month")
+    public ResponseEntity<List<Booking>> getRevenueByMonth(@RequestParam("year") int year){
 
-//    // filter Theo status and phân trang
-//    @GetMapping("/history")
-//    public ResponseEntity<Page<Booking>> getAllBookings(
-//            @RequestParam(defaultValue = "0") int page,
-//            @RequestParam(defaultValue = "10") int size,
-//            @RequestParam(required = false) BookingStatus status) {
-//
-//        Pageable pageable = PageRequest.of(page, size, Sort.by("bookingDate").descending());
-//
-//        Page<Booking> bookings;
-//
-//        if (status != null) {
-//            bookings = bookingService.getAllBookingsWithStatus(status, pageable);
-//        } else {
-//            bookings = bookingService.getAllBookings(pageable);
-//        }
-//
-//        return ResponseEntity.ok(bookings);
-//    }
+        return ResponseEntity.ok(bookingService.getBookingInYear(year));
+    }
+    // tinh so tien da booking trong nam
+    @GetMapping("/revenue-in-month")
+    public double manyToMonth(@RequestParam("year") int year,
+                              @RequestParam("month") int month){
+        return bookingService.manyToMonth(year, month);
+    }
 
+    // dem so luong tour booking nhieu nhat
+    @GetMapping("/booked-tours")
+    public List<TourBookingCount> getMostBookedTours(){
+        return bookingService.getMostBookedTours();
+    }
 }

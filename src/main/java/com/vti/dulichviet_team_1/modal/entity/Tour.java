@@ -9,7 +9,7 @@ import javax.persistence.*;
 @Table(name = "`tour`")
 public class Tour {
   @Id
-  @Column(name = "`id`")
+  @Column(name = "`TOURID`")
   @GeneratedValue(strategy = GenerationType.IDENTITY)
   private int id;
 
@@ -31,7 +31,6 @@ public class Tour {
 
   @Column(name = "`transport`", nullable = false)
   @Enumerated(EnumType.STRING)
-
   private Transport transport;
 
   @Column(name = "`content`", nullable = false)

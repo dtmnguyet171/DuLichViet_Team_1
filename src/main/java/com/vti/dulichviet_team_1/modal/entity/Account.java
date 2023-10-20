@@ -31,8 +31,10 @@ public class Account {
   private String password;
 
   @Column(name = "`role`")
+  @Enumerated(EnumType.STRING)
   private Role role;
 
   @Column(name = "`status`")
+  @Enumerated(EnumType.STRING)
   private AccountStatus status;
 }

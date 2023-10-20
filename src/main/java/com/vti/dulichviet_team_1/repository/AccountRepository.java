@@ -1,4 +1,4 @@
-package com.vti.dulichviet_team_1.repository;
+package com.vti.dulichviet_team_1.Repository;
 
 import com.vti.dulichviet_team_1.modal.entity.Account;
 import org.springframework.data.jpa.repository.JpaRepository;
