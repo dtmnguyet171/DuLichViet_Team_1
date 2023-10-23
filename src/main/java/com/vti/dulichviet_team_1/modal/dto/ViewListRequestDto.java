@@ -21,7 +21,7 @@ public class ViewListRequestDto extends BaseResquestViewList {
     private String content;
     private Set<Type> type;
 
-//    TẠO RA 2 GIÁ TRỊ PRICE ĐỂ LẤY RA GIÁ TRỊ GIỮA CHÚNG
+    //    TẠO RA 2 GIÁ TRỊ PRICE ĐỂ LẤY RA GIÁ TRỊ GIỮA CHÚNG
     private int minPrice;
     private int maxPrice;
 

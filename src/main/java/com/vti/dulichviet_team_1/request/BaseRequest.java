@@ -7,9 +7,9 @@ public class BaseRequest {
 
     protected int page;
 
-    protected  int size;
+    protected int size;
 
-    protected String  sortField;
+    protected String sortField;
 
     protected String sortType;
 

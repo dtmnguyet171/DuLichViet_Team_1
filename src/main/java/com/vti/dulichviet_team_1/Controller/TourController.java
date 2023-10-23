@@ -46,16 +46,16 @@ public class TourController {
 
     @DeleteMapping("/delete_tour/{id}")
     public void deleteTour(@PathVariable(name = "id") int id) {
-         tourService.deleteTour(id);
+        tourService.deleteTour(id);
     }
 
     @GetMapping("/viewdetail/{id}")
-    public Tour viewDetailTour( @PathVariable(name = "id") int id) {
+    public Tour viewDetailTour(@PathVariable(name = "id") int id) {
         Optional<Tour> optionalTour = tourRepository.findById(id);
-        if (optionalTour.isPresent()){
+        if (optionalTour.isPresent()) {
             return tourService.viewDetailTour(id);
 
-        }else {
+        } else {
             return null;
         }
     }

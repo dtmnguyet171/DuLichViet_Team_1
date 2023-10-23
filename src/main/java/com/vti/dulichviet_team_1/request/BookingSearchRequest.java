@@ -9,7 +9,7 @@ import java.util.Set;
 
 @Data
 @NoArgsConstructor
-public class BookingSearchRequest extends  BaseRequest{
+public class BookingSearchRequest extends BaseRequest {
 //    private String email;
 //    private String username;
 //    private String fullname;
@@ -20,7 +20,7 @@ public class BookingSearchRequest extends  BaseRequest{
 //    private int size;
 
 
-    private Account accountId ;
+    private Account accountId;
 
     private Set<BookingStatus> status;
 }

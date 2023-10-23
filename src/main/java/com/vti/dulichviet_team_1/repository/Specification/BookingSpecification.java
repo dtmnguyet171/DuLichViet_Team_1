@@ -61,7 +61,7 @@ public class BookingSpecification {
 
 
     public static Specification<Booking> buildConditionStatus(BookingSearchRequest request) {
-        if (request.getStatus() != null && request.getStatus().size()  > 0 )  {
+        if (request.getStatus() != null && request.getStatus().size() > 0) {
             return (root, query, criteriaBuilder) -> {
                 return root.get("status").in(request.getStatus());
             };

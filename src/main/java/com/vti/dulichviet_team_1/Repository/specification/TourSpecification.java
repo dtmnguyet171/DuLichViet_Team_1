@@ -9,16 +9,16 @@ import javax.swing.text.View;
 public class TourSpecification {
 
     public static Specification<Tour> buildCondition(ViewListRequestDto viewListRequestDto) {
-        return  Specification.where(buildConditionTitle(viewListRequestDto))
-                    .and(Specification.where(buildConditionDepart(viewListRequestDto))
-                    .and(Specification.where(buildConditionArrival(viewListRequestDto))
-                    .and(Specification.where(buildConditionDuration(viewListRequestDto))
-                    .and(Specification.where(buildConditiontTransport(viewListRequestDto))
-                    .and(Specification.where(buildConditiontContent(viewListRequestDto))
-                    .and(Specification.where(buildConditiontStatus(viewListRequestDto))
-                    .and(Specification.where(buildConditiontPrice(viewListRequestDto))
-                    .and(Specification.where(buildConditiontType(viewListRequestDto))
-                    ))))))));
+        return Specification.where(buildConditionTitle(viewListRequestDto))
+                .and(Specification.where(buildConditionDepart(viewListRequestDto))
+                        .and(Specification.where(buildConditionArrival(viewListRequestDto))
+                                .and(Specification.where(buildConditionDuration(viewListRequestDto))
+                                        .and(Specification.where(buildConditiontTransport(viewListRequestDto))
+                                                .and(Specification.where(buildConditiontContent(viewListRequestDto))
+                                                        .and(Specification.where(buildConditiontStatus(viewListRequestDto))
+                                                                .and(Specification.where(buildConditiontPrice(viewListRequestDto))
+                                                                        .and(Specification.where(buildConditiontType(viewListRequestDto))
+                                                                        ))))))));
     }
 
     public static Specification<Tour> buildConditionTitle(ViewListRequestDto viewListRequestDto) {
@@ -41,10 +41,10 @@ public class TourSpecification {
         if (viewListRequestDto.getDepart() != null && !"".equals(viewListRequestDto.getDepart())) {
 
             return (root, query, criteriaBuilder) -> {
-                return criteriaBuilder.like(root.get("depart"),"%" + viewListRequestDto.getDepart() + "%" );
+                return criteriaBuilder.like(root.get("depart"), "%" + viewListRequestDto.getDepart() + "%");
             };
 
-        }else {
+        } else {
             return null;
         }
     }
@@ -53,10 +53,10 @@ public class TourSpecification {
         if (viewListRequestDto.getArrival() != null && !"".equals(viewListRequestDto.getArrival())) {
 
             return (root, query, criteriaBuilder) -> {
-                return criteriaBuilder.like(root.get("arrival"),"%" + viewListRequestDto.getArrival() + "%" );
+                return criteriaBuilder.like(root.get("arrival"), "%" + viewListRequestDto.getArrival() + "%");
             };
 
-        }else {
+        } else {
             return null;
         }
     }
@@ -68,7 +68,7 @@ public class TourSpecification {
                 return criteriaBuilder.equal(root.get("duration"), viewListRequestDto.getDuration());
             };
 
-        }else {
+        } else {
             return null;
         }
     }
@@ -80,7 +80,7 @@ public class TourSpecification {
                 return root.get("transport").in(viewListRequestDto.getTransport());
             };
 
-        }else {
+        } else {
             return null;
         }
     }
@@ -92,7 +92,7 @@ public class TourSpecification {
                 return criteriaBuilder.like(root.get("content"), "%" + viewListRequestDto.getContent() + "%");
 
             };
-        }else {
+        } else {
             return null;
         }
     }
@@ -104,7 +104,7 @@ public class TourSpecification {
                 return root.get("status").in(viewListRequestDto.getStatus());
             };
 
-        }else {
+        } else {
             return null;
         }
     }
@@ -115,25 +115,23 @@ public class TourSpecification {
                 return criteriaBuilder.between(root.get("price"), viewListRequestDto.getMinPrice(), viewListRequestDto.getMaxPrice());
             };
 
-        }
-        else {
+        } else {
             return null;
         }
 
     }
 
     public static Specification<Tour> buildConditiontType(ViewListRequestDto viewListRequestDto) {
-        if (viewListRequestDto.getType() != null && viewListRequestDto.getType().size()> 0) {
+        if (viewListRequestDto.getType() != null && viewListRequestDto.getType().size() > 0) {
 
             return (root, query, criteriaBuilder) -> {
                 return root.get("type").in(viewListRequestDto.getType());
             };
 
-        }else {
+        } else {
             return null;
         }
     }
-
 
 
 }

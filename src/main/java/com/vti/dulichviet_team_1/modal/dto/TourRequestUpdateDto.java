@@ -53,7 +53,7 @@ public class TourRequestUpdateDto {
 
     private TourStatus status;
 
-//    @NotBlank(message = "The number of people booking the tour cannot be left blank")
+    //    @NotBlank(message = "The number of people booking the tour cannot be left blank")
     private int maxGuestSize;
 
 }

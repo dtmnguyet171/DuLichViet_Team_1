@@ -9,30 +9,30 @@ import java.time.LocalDate;
 @Entity
 @Table(name = "`booking`")
 public class Booking {
-  @Id
-  @Column(name = "`id`")
-  private int id;
+    @Id
+    @Column(name = "`id`")
+    private int id;
 
-  @Column(name = "`note`")
-  private String note;
+    @Column(name = "`note`")
+    private String note;
 
-  @ManyToOne()
-  @JoinColumn(name = "`account_id`")
-  private Account account;
+    @ManyToOne()
+    @JoinColumn(name = "`account_id`")
+    private Account account;
 
-  @ManyToOne()
-  @JoinColumn(name = "`tour_id`")
-  private Tour tour;
+    @ManyToOne()
+    @JoinColumn(name = "`tour_id`")
+    private Tour tour;
 
-  @Column(name = "`status`")
-  private BookingStatus status;
+    @Column(name = "`status`")
+    private BookingStatus status;
 
-  @Column(name = "price")
-  private double price;
+    @Column(name = "price")
+    private double price;
 
-  @Column(name = "booking_date")
-  private LocalDate bookingDate;
+    @Column(name = "booking_date")
+    private LocalDate bookingDate;
 
-  @Column(name = "guest_size")
-  private Integer guestSize;
+    @Column(name = "guest_size")
+    private Integer guestSize;
 }

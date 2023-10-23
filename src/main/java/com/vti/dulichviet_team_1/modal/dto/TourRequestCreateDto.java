@@ -21,7 +21,7 @@ public class TourRequestCreateDto {
     private String title;
 
 
-//    @Pattern(regexp = "HOT_TOUR | TEAM_BUILDING | HOLIDAY | SHORT_TOUR")
+    //    @Pattern(regexp = "HOT_TOUR | TEAM_BUILDING | HOLIDAY | SHORT_TOUR")
     private Type type;
 
     @NotBlank(message = "The depart Mustn't be null value")
@@ -56,9 +56,8 @@ public class TourRequestCreateDto {
 
     private TourStatus status;
 
-//    @NotBlank(message = "The number of people booking the tour cannot be left blank")
+    //    @NotBlank(message = "The number of people booking the tour cannot be left blank")
     private int maxGuestSize;
-
 
 
 }

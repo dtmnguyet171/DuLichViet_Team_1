@@ -8,31 +8,31 @@ import javax.persistence.*;
 @Entity
 @Table(name = "`account`")
 public class Account {
-  @Id
-  @GeneratedValue(strategy = GenerationType.IDENTITY)
-  private int id;
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private int id;
 
-  @Column(name = "`email`")
-  private String email;
+    @Column(name = "`email`")
+    private String email;
 
-  @Column(name = "`username`")
-  private String username;
+    @Column(name = "`username`")
+    private String username;
 
-  @Column(name = "`full_name`")
-  private String fullName;
+    @Column(name = "`full_name`")
+    private String fullName;
 
-  @Column(name = "`phone`")
-  private String phone;
+    @Column(name = "`phone`")
+    private String phone;
 
-  @Column(name = "`address`")
-  private String address;
+    @Column(name = "`address`")
+    private String address;
 
-  @Column(name = "`password`")
-  private String password;
+    @Column(name = "`password`")
+    private String password;
 
-  @Column(name = "`role`")
-  private Role role;
+    @Column(name = "`role`")
+    private Role role;
 
-  @Column(name = "`status`")
-  private AccountStatus status;
+    @Column(name = "`status`")
+    private AccountStatus status;
 }

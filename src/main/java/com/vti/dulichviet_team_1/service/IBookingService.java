@@ -13,15 +13,15 @@ import java.util.List;
 public interface IBookingService {
 
 
-    List<Booking> getAllBooking ();
+    List<Booking> getAllBooking();
 
     Page<Booking> search(BookingSearchRequest searchRequest);
 
-    void createBooking (BookingCreateRequest bookingCreateRequest);
+    void createBooking(BookingCreateRequest bookingCreateRequest);
 
-    Booking updateBooking (int bookingId, BookingUpdateRequest bookingUpdateRequest);
+    Booking updateBooking(int bookingId, BookingUpdateRequest bookingUpdateRequest);
 
-    void deleteBookingId (int bookingId);
+    void deleteBookingId(int bookingId);
     //xem lịch sử của từng Account
 
     List<Booking> getBookingHistoryByAccount(Account account);
@@ -33,7 +33,6 @@ public interface IBookingService {
 //    Page<Booking> getAllBookings(Pageable pageable);
 //
 //    Page<Booking> getAllBookingsWithStatus(BookingStatus status, Pageable pageable);
-
 
 
 }

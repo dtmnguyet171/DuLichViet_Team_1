@@ -61,13 +61,13 @@ public class TourService implements ITourService {
         Optional<Tour> optionalTour = tourRepository.findById(id);
         if (optionalTour.isPresent()) {
             return optionalTour.get();
-        }else {
+        } else {
             return null;
         }
 
     }
 
-//    TÌM KIẾM NÂNG CAO KẾT HỢP PHÂN TRANG
+    //    TÌM KIẾM NÂNG CAO KẾT HỢP PHÂN TRANG
     @Override
     public Page<Tour> viewListTour(ViewListRequestDto viewListRequestDto) {
         PageRequest pageRequest = null;
@@ -75,7 +75,7 @@ public class TourService implements ITourService {
         if ("DESC".equals(viewListRequestDto.getSortType())) {
             pageRequest = PageRequest.of(viewListRequestDto.getPage() - 1, viewListRequestDto.getPage_size(), Sort.by(viewListRequestDto.getSortField()).descending());
 
-        }else  {
+        } else {
             pageRequest = PageRequest.of(viewListRequestDto.getPage() - 1, viewListRequestDto.getPage_size(), Sort.by(viewListRequestDto.getSortField()).ascending());
         }
         Specification<Tour> condition = TourSpecification.buildCondition(viewListRequestDto);

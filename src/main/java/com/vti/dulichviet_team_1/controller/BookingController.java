@@ -1,18 +1,16 @@
-package com.vti.dulichviet_team_1.controller;
+package com.vti.dulichviet_team_1.Controller;
 
 
+import com.vti.dulichviet_team_1.Service.impl.BookingService;
 import com.vti.dulichviet_team_1.modal.entity.Account;
 import com.vti.dulichviet_team_1.modal.entity.Booking;
-import com.vti.dulichviet_team_1.modal.entity.BookingStatus;
+
 import com.vti.dulichviet_team_1.request.BookingCreateRequest;
 import com.vti.dulichviet_team_1.request.BookingSearchRequest;
 import com.vti.dulichviet_team_1.request.BookingUpdateRequest;
-import com.vti.dulichviet_team_1.service.impl.BookingService;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
-import org.springframework.data.domain.PageRequest;
-import org.springframework.data.domain.Pageable;
-import org.springframework.data.domain.Sort;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -34,31 +32,32 @@ public class BookingController {
         return ResponseEntity.status(HttpStatus.OK).body(bookingService.getAllBooking());
     }
 
-        @PostMapping("/search")
-    public Page<Booking> search (BookingSearchRequest request) {
+    @PostMapping("/search")
+    public Page<Booking> search(BookingSearchRequest request) {
         return bookingService.search(request);
     }
 
     // thêm mới Booking
     @PostMapping("/create-booking")
-    public ResponseEntity<?> createBooking (BookingCreateRequest bookingCreateRequest) {
+    public ResponseEntity<?> createBooking(BookingCreateRequest bookingCreateRequest) {
         bookingService.createBooking(bookingCreateRequest);
         return new ResponseEntity<>(HttpStatus.CREATED);
     }
 
     // sửa booking
     @PutMapping("/update/{bookingId}")
-    public ResponseEntity<Booking> updateBooking(@PathVariable int bookingId,@RequestBody BookingUpdateRequest bookingRequest){
-        try{
-            Booking updatedBooking = bookingService.updateBooking(bookingId,bookingRequest);
+    public ResponseEntity<Booking> updateBooking(@PathVariable int bookingId, @RequestBody BookingUpdateRequest bookingRequest) {
+        try {
+            Booking updatedBooking = bookingService.updateBooking(bookingId, bookingRequest);
             return ResponseEntity.ok(updatedBooking);
-        }catch (RuntimeException e){
+        } catch (RuntimeException e) {
             return ResponseEntity.notFound().build();
         }
     }
+
     // xóa booking
     @DeleteMapping("/delete/{bookingId}")
-    public ResponseEntity<?> deleteBooking(@PathVariable int bookingId){
+    public ResponseEntity<?> deleteBooking(@PathVariable int bookingId) {
         bookingService.deleteBookingId(bookingId);
         return ResponseEntity.noContent().build();
     }
