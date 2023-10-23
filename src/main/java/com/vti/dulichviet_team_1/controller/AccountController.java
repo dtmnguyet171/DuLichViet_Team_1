@@ -1,13 +1,19 @@
-package com.vti.dulichviet_team_1.controller;
+package com.vti.dulichviet_team_1.Controller;
 
+import com.vti.dulichviet_team_1.Service.impl.AccountService;
 import com.vti.dulichviet_team_1.modal.entity.Account;
-import com.vti.dulichviet_team_1.service.AccountService;
+
+import com.vti.dulichviet_team_1.request.AccountCreateRq;
+import com.vti.dulichviet_team_1.request.AccountUpdateRq;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 import java.util.Optional;
 
+@RestController
+@RequestMapping("/api/accounts")
+@CrossOrigin("*")
 public class AccountController {
     private final AccountService accountService;
 
@@ -16,7 +22,7 @@ public class AccountController {
         this.accountService = accountService;
     }
 
-    @GetMapping
+    @GetMapping("/get-all")
     public List<Account> getAllAccounts() {
         return accountService.getAllAccounts();
     }
@@ -26,14 +32,14 @@ public class AccountController {
         return accountService.getAccountById(id);
     }
 
-    @PostMapping
-    public Account createAccount(@RequestBody Account account) {
-        return accountService.createAccount(account);
+    @PostMapping("/create")
+    public void createAccount(@RequestBody AccountCreateRq account) {
+         accountService.createAccount(account);
     }
 
-    @PutMapping
-    public Account updateAccount(@RequestBody Account account) {
-        return accountService.updateAccount(account);
+    @PutMapping("/update/{id}")
+    public Account updateAccount(@PathVariable int id ,@RequestBody AccountUpdateRq account) {
+        return accountService.updateAccount(id,account);
     }
 
     @DeleteMapping("/{id}")
