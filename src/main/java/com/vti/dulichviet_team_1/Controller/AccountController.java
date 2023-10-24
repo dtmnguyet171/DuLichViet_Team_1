@@ -4,8 +4,11 @@ import com.vti.dulichviet_team_1.Service.impl.AccountService;
 import com.vti.dulichviet_team_1.modal.entity.Account;
 
 import com.vti.dulichviet_team_1.request.AccountCreateRq;
+import com.vti.dulichviet_team_1.request.AccountSearchRequest;
 import com.vti.dulichviet_team_1.request.AccountUpdateRq;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -23,8 +26,8 @@ public class AccountController {
     }
 
     @GetMapping("/get-all")
-    public List<Account> getAllAccounts() {
-        return accountService.getAllAccounts();
+    public Page<Account> getAllAccounts(AccountSearchRequest request) {
+        return accountService.getAllAccounts(request);
     }
 
     @GetMapping("/{id}")
