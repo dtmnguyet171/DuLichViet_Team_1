@@ -1,18 +1,22 @@
 package com.vti.dulichviet_team_1.Service.impl;
 
 import com.vti.dulichviet_team_1.Repository.IAccountRepository;
+import com.vti.dulichviet_team_1.Repository.specification.AccountSpecification;
 import com.vti.dulichviet_team_1.Service.IAccountService;
 import com.vti.dulichviet_team_1.modal.entity.Account;
-
 import com.vti.dulichviet_team_1.modal.entity.AccountStatus;
 import com.vti.dulichviet_team_1.modal.entity.Role;
 import com.vti.dulichviet_team_1.request.AccountCreateRq;
+import com.vti.dulichviet_team_1.request.AccountSearchRequest;
 import com.vti.dulichviet_team_1.request.AccountUpdateRq;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Sort;
+import org.springframework.data.jpa.domain.Specification;
 import org.springframework.stereotype.Service;
 
 import javax.transaction.Transactional;
-import java.util.List;
 import java.util.Optional;
 
 @Service
@@ -28,8 +32,18 @@ public class AccountService implements IAccountService {
 
 
     @Override
-    public List<Account> getAllAccounts() {
-        return accountRepository.findAll();
+    public Page<Account> getAllAccounts(AccountSearchRequest request) {
+        PageRequest pageRequest = null;
+
+        if ("DESC".equals(request.getSortType())) {
+            pageRequest = PageRequest.of(request.getPage() - 1, request.getSize(), Sort.by(request.getSortField()).descending());
+
+        } else {
+            pageRequest = PageRequest.of(request.getPage() - 1, request.getSize(), Sort.by(request.getSortField()).ascending());
+        }
+        Specification<Account> condition = AccountSpecification.buildCondition(request);
+        System.out.println(condition);
+        return accountRepository.findAll(condition, pageRequest);
     }
 
     @Override
