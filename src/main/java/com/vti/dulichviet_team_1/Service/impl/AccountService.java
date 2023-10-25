@@ -9,14 +9,20 @@ import com.vti.dulichviet_team_1.modal.entity.Role;
 import com.vti.dulichviet_team_1.request.AccountCreateRq;
 import com.vti.dulichviet_team_1.request.AccountUpdateRq;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.GrantedAuthority;
+import org.springframework.security.core.userdetails.UserDetails;
+import org.springframework.security.core.userdetails.UserDetailsService;
+import org.springframework.security.core.userdetails.UsernameNotFoundException;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
 import javax.transaction.Transactional;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
 @Service
-public class AccountService implements IAccountService {
+public class AccountService implements IAccountService, UserDetailsService {
 
     private final IAccountRepository accountRepository;
 
@@ -26,6 +32,8 @@ public class AccountService implements IAccountService {
         this.accountRepository = accountRepository;
     }
 
+    @Autowired
+    private PasswordEncoder passwordEncoder;
 
     @Override
     public List<Account> getAllAccounts() {
@@ -56,7 +64,11 @@ public class AccountService implements IAccountService {
         account.setUsername(accountCreateRq.getUsername());
         account.setRole(Role.USER);
         account.setStatus(AccountStatus.INACTIVE);
-        account.setPassword(accountCreateRq.getPassword());
+
+        String newPasswordEncoder = passwordEncoder.encode(accountCreateRq.getPassword());
+        System.out.println(newPasswordEncoder);
+        account.setPassword(newPasswordEncoder);
+        System.out.println(account);
         accountRepository.save(account);
     }
 
@@ -86,5 +98,33 @@ public class AccountService implements IAccountService {
     }else {
       throw new RuntimeException("khong tim thay account");
     }
+    }
+
+    @Override
+    public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
+
+        Optional<Account> optionalAccount = accountRepository.findAccountByUsername(username);
+        if (optionalAccount.isEmpty()) {
+            System.out.println("Khong tim thay username cua ban vua nhap");
+
+        }
+
+        else {
+            Account account = optionalAccount.get();
+            /**
+             * userdetails.getusername(): username
+             * userdetails.getPassword(): mật khẩu đã đưuọc mã hóa
+             * grantedAuthorityList: List quyền của user
+             */
+
+            List<GrantedAuthority> authoritiesList = new ArrayList<>();
+
+//           Add thêm những permistion vào (chính là thằng Role() bên dưới);
+            authoritiesList.add(account.getRole());
+
+            return new org.springframework.security.core.userdetails.User(account.getUsername(), account.getPassword(), authoritiesList);
+        }
+
+        return null;
     }
 }
