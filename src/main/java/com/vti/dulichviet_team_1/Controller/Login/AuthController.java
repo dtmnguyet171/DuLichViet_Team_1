@@ -1,6 +1,8 @@
 package com.vti.dulichviet_team_1.Controller.Login;
 
 import com.vti.dulichviet_team_1.Config.Encoder;
+import com.vti.dulichviet_team_1.Config.Exception.AppException;
+import com.vti.dulichviet_team_1.Config.Exception.ErrorEnum;
 import com.vti.dulichviet_team_1.Repository.IAccountRepository;
 import com.vti.dulichviet_team_1.modal.dto.LoginDto;
 import com.vti.dulichviet_team_1.modal.entity.Account;
@@ -39,7 +41,8 @@ public class AuthController {
         Optional<Account> optionalAccount = accountRepository.findAccountByUsername(loginRequest.getUsername());
 
         if (optionalAccount.isEmpty()) {
-            System.out.println("Khong tim thay username cua ban trong he thong");
+
+            throw new AppException(ErrorEnum.NOT_FOUND_USERNAME);
         }
 
        Account account = optionalAccount.get();
@@ -50,7 +53,7 @@ public class AuthController {
 
         boolean checkPassword = passwordEncoder.matches(loginRequest.getPassword(), account.getPassword());
         if (!checkPassword) {
-            System.out.println("Mat khau khong dung, vui long kiem tra lai");
+            throw  new AppException(ErrorEnum.NOT_MATCH_PASS);
 
         }
 

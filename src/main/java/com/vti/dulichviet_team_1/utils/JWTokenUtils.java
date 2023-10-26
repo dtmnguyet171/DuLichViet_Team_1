@@ -6,6 +6,7 @@ package com.vti.dulichviet_team_1.utils;
 import antlr.Token;
 import com.alibaba.fastjson.JSON;
 
+import com.vti.dulichviet_team_1.Config.Exception.AppExceptionDto;
 import com.vti.dulichviet_team_1.modal.dto.LoginDto;
 import com.vti.dulichviet_team_1.modal.entity.Role;
 import io.jsonwebtoken.Claims;
@@ -82,8 +83,8 @@ public class JWTokenUtils {
     public boolean checkToken(String token, HttpServletResponse response, HttpServletRequest httpServletRequest) {
         try {
             if (StringUtils.isBlank(token) || !token.startsWith(PREFIX_TOKEN)) { // token bị trống -> lỗi
-                System.out.println("Co loi");
-//                responseJson(response, new AppExceptionDto(401,"Token ko hợp lệ",  httpServletRequest.getRequestURI()));
+//                System.out.println("Co loi");
+                responseJson(response, new AppExceptionDto(401,"Token ko hợp lệ",  httpServletRequest.getRequestURI()));
                 return false;
             }
 //             BỎ TỪ KHÓA BEARER VÀ KHOẢNG TRẮNG Ở 2 ĐẦU
@@ -91,29 +92,29 @@ public class JWTokenUtils {
 
             LoginDto loginDto = parseAccessToken(token);
             if (loginDto == null) { // Ko có token trên hệ thống
-                System.out.println("Co loi");
-//                responseJson(response, new AppExceptionDto(401,"Token ko tồn tại hoặc hết hạn", httpServletRequest.getRequestURI()));
+//                System.out.println("Co loi");
+                responseJson(response, new AppExceptionDto(401,"Token ko tồn tại hoặc hết hạn", httpServletRequest.getRequestURI()));
                 return false;
             }
         } catch (Exception e) {
-            System.out.println(e.getMessage());
-//            responseJson(response, new AppExceptionDto(401,e.getMessage(), httpServletRequest.getRequestURI()));
+//            System.out.println(e.getMessage());
+            responseJson(response, new AppExceptionDto(401,e.getMessage(), httpServletRequest.getRequestURI()));
             return false;
         }
         return true;
     }
 
     // Hàm này dùng để response dữ liệu khi gặp lỗi
-//    private void responseJson(HttpServletResponse response, AppExceptionDto appException){
-//        response.setCharacterEncoding("UTF-8");
-//        response.setContentType("application/json");
-//        response.setStatus(401);
-//        try {
-//            response.getWriter().print(JSON.toJSONString(appException));
-//        } catch (IOException e) {
-//            log.debug(e.getMessage());
-//            throw new RuntimeException(e);
-//        }
-//    }
+    private void responseJson(HttpServletResponse response, AppExceptionDto appException){
+        response.setCharacterEncoding("UTF-8");
+        response.setContentType("application/json");
+        response.setStatus(401);
+        try {
+            response.getWriter().print(JSON.toJSONString(appException));
+        } catch (IOException e) {
+            log.debug(e.getMessage());
+            throw new RuntimeException(e);
+        }
+    }
 
 }

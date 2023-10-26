@@ -1,5 +1,7 @@
 package com.vti.dulichviet_team_1.Service.impl;
 
+import com.vti.dulichviet_team_1.Config.Exception.AppException;
+import com.vti.dulichviet_team_1.Config.Exception.ErrorEnum;
 import com.vti.dulichviet_team_1.Repository.IAccountRepository;
 import com.vti.dulichviet_team_1.Service.IAccountService;
 import com.vti.dulichviet_team_1.modal.entity.Account;
@@ -105,8 +107,8 @@ public class AccountService implements IAccountService, UserDetailsService {
 
         Optional<Account> optionalAccount = accountRepository.findAccountByUsername(username);
         if (optionalAccount.isEmpty()) {
-            System.out.println("Khong tim thay username cua ban vua nhap");
 
+            throw new AppException(ErrorEnum.NOT_FOUND_USERNAME);
         }
 
         else {
@@ -125,6 +127,6 @@ public class AccountService implements IAccountService, UserDetailsService {
             return new org.springframework.security.core.userdetails.User(account.getUsername(), account.getPassword(), authoritiesList);
         }
 
-        return null;
+
     }
 }
