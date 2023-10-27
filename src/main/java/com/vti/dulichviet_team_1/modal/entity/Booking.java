@@ -36,4 +36,6 @@ public class Booking {
 
     @Column(name = "guest_size")
     private Integer guestSize;
+
+
 }

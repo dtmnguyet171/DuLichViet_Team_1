@@ -20,6 +20,7 @@ import org.springframework.data.domain.Sort;
 import org.springframework.data.jpa.domain.Specification;
 import org.springframework.stereotype.Service;
 
+import java.time.LocalDate;
 import java.util.List;
 import java.util.Optional;
 
@@ -70,6 +71,8 @@ public class BookingService implements IBookingService {
             BeanUtils.copyProperties(bookingCreateRequest, booking);
             booking.setAccount(account.get());
             booking.setTour(tour.get());
+            booking.setBookingDate(LocalDate.now());
+            booking.setPrice(bookingCreateRequest.getPrice());
             booking.setStatus(BookingStatus.CONFIRM);
             booking.setGuestSize(bookingCreateRequest.getGuestSize());
             bookingrepository.save(booking);
