@@ -72,7 +72,7 @@ public class BookingService implements IBookingService {
             booking.setAccount(account.get());
             booking.setTour(tour.get());
             booking.setBookingDate(LocalDate.now());
-            booking.setPrice(bookingCreateRequest.getPrice());
+            booking.setPrice(tourRepository.count());
             booking.setStatus(BookingStatus.CONFIRM);
             booking.setGuestSize(bookingCreateRequest.getGuestSize());
             bookingrepository.save(booking);
