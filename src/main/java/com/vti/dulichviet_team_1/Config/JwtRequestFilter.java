@@ -36,6 +36,8 @@ public class JwtRequestFilter extends OncePerRequestFilter {
 
         if (StringUtils.containsAnyIgnoreCase(request, "/api/v1/auth/login")
                 || StringUtils.containsAnyIgnoreCase(request, "/api/v1/account/create")
+                || StringUtils.containsAnyIgnoreCase(request, "/api/v1/tour/view_list_tour")
+                || StringUtils.containsAnyIgnoreCase(request, "/api/v1/tour/viewdetail")
                 || StringUtils.containsAnyIgnoreCase(request, "/api/v1/login/login-jwt")
                 || StringUtils.containsAnyIgnoreCase(request, "/api/accounts/create")
                 || StringUtils.containsAnyIgnoreCase(request, "/api/v1/product/search")

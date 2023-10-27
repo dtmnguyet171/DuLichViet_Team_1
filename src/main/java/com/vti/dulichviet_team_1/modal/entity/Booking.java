@@ -25,6 +25,7 @@ public class Booking {
     private Tour tour;
 
     @Column(name = "`status`")
+    @Enumerated(EnumType.STRING)
     private BookingStatus status;
 
     @Column(name = "price")

@@ -12,13 +12,12 @@ public class TourSpecification {
         return Specification.where(buildConditionTitle(viewListRequestDto))
                 .and(Specification.where(buildConditionDepart(viewListRequestDto))
                         .and(Specification.where(buildConditionArrival(viewListRequestDto))
-                                .and(Specification.where(buildConditionDuration(viewListRequestDto))
                                         .and(Specification.where(buildConditiontTransport(viewListRequestDto))
                                                 .and(Specification.where(buildConditiontContent(viewListRequestDto))
                                                         .and(Specification.where(buildConditiontStatus(viewListRequestDto))
                                                                 .and(Specification.where(buildConditiontPrice(viewListRequestDto))
                                                                         .and(Specification.where(buildConditiontType(viewListRequestDto))
-                                                                        ))))))));
+                                                                        )))))));
     }
 
     public static Specification<Tour> buildConditionTitle(ViewListRequestDto viewListRequestDto) {
@@ -54,18 +53,6 @@ public class TourSpecification {
 
             return (root, query, criteriaBuilder) -> {
                 return criteriaBuilder.like(root.get("arrival"), "%" + viewListRequestDto.getArrival() + "%");
-            };
-
-        } else {
-            return null;
-        }
-    }
-
-    public static Specification<Tour> buildConditionDuration(ViewListRequestDto viewListRequestDto) {
-        if (!"".equals(viewListRequestDto.getDuration())) {
-
-            return (root, query, criteriaBuilder) -> {
-                return criteriaBuilder.equal(root.get("duration"), viewListRequestDto.getDuration());
             };
 
         } else {

@@ -1,4 +1,4 @@
-package com.vti.dulichviet_team_1.Service.impl;
+package com.vti.dulichviet_team_1.service.impl;
 
 import com.vti.dulichviet_team_1.Config.Exception.AppException;
 import com.vti.dulichviet_team_1.Config.Exception.ErrorEnum;
@@ -65,7 +65,7 @@ public class AccountService implements IAccountService, UserDetailsService {
         account.setFullName(accountCreateRq.getFullName());
         account.setUsername(accountCreateRq.getUsername());
         account.setRole(Role.USER);
-        account.setStatus(AccountStatus.INACTIVE);
+        account.setStatus(AccountStatus.ACTIVE);
 
         String newPasswordEncoder = passwordEncoder.encode(accountCreateRq.getPassword());
         System.out.println(newPasswordEncoder);
@@ -106,7 +106,7 @@ public class AccountService implements IAccountService, UserDetailsService {
     public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
 
         Optional<Account> optionalAccount = accountRepository.findAccountByUsername(username);
-        if (optionalAccount.isEmpty()) {
+        if (!optionalAccount.isPresent()) {
 
             throw new AppException(ErrorEnum.NOT_FOUND_USERNAME);
         }

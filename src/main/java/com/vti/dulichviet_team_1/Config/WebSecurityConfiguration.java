@@ -1,7 +1,7 @@
 package com.vti.dulichviet_team_1.Config;
 
 
-import com.vti.dulichviet_team_1.Service.impl.AccountService;
+import com.vti.dulichviet_team_1.service.impl.AccountService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
@@ -38,9 +38,14 @@ public class WebSecurityConfiguration extends WebSecurityConfigurerAdapter {
     protected void configure(HttpSecurity http) throws Exception {
         http.authorizeRequests()
 // config những API ko cần xác thực
-                .antMatchers("api/not-authenticated","/api/v1/account/create", "/api/accounts/create", "/api/v1/login/login-jwt").permitAll()
+                .antMatchers("/api/v1/tour/view_list_tour", "/api/accounts/create",
+                        "/api/v1/login/login-jwt").permitAll()
+                .antMatchers("/api/v1/tour/viewdetail/*").permitAll()
 
-// Config những API phải có Authority là ADMIN thì mới được truy cập .antMatchers(HttpMethod.GET,"api/v1/product/*").hasAuthority("ADMIN")
+// Config những API phải có Authority là ADMIN thì mới được truy cập
+                .antMatchers("/api/v1/tour/create_tour", "/api/v1/tour/update_tour",
+                        "/api/v1/tour/delete_tour/*", "/api/accounts/get-all",
+                        "/api/accounts/*").hasAuthority("ADMIN")
 
 // Config những API phải có Authority là ADMIN hoặc User thì mới được truy cập
                 .antMatchers("api/admin-or-user").hasAnyAuthority("ADMIN", "User")
