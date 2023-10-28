@@ -1,16 +1,14 @@
 package com.vti.dulichviet_team_1.Controller.Login;
 
-import com.vti.dulichviet_team_1.Config.Encoder;
 import com.vti.dulichviet_team_1.Config.Exception.AppException;
 import com.vti.dulichviet_team_1.Config.Exception.ErrorEnum;
-import com.vti.dulichviet_team_1.Repository.IAccountRepository;
+import com.vti.dulichviet_team_1.repository.IAccountRepository;
 import com.vti.dulichviet_team_1.modal.dto.LoginDto;
 import com.vti.dulichviet_team_1.modal.entity.Account;
 import com.vti.dulichviet_team_1.request.LoginRequest;
 import com.vti.dulichviet_team_1.utils.JWTokenUtils;
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.context.annotation.Bean;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.web.bind.annotation.*;
 

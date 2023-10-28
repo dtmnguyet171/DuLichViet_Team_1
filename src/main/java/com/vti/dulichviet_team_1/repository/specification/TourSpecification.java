@@ -1,10 +1,8 @@
-package com.vti.dulichviet_team_1.Repository.specification;
+package com.vti.dulichviet_team_1.repository.specification;
 
 import com.vti.dulichviet_team_1.modal.dto.ViewListRequestDto;
 import com.vti.dulichviet_team_1.modal.entity.Tour;
 import org.springframework.data.jpa.domain.Specification;
-
-import javax.swing.text.View;
 
 public class TourSpecification {
 
