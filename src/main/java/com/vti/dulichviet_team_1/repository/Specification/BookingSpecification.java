@@ -1,4 +1,4 @@
-package com.vti.dulichviet_team_1.repository.Specification;
+package com.vti.dulichviet_team_1.Repository.specification;
 
 import com.vti.dulichviet_team_1.modal.entity.Booking;
 import com.vti.dulichviet_team_1.request.BookingSearchRequest;
@@ -17,9 +17,9 @@ public class BookingSpecification {
 
 
     public static Specification<Booking> buildConditionEmail(BookingSearchRequest request) {
-        if (request.getAccountId().getEmail() != null && !"".equals(request.getAccountId().getEmail())) {
+        if (request.getEmail() != null && !"".equals(request.getEmail())) {
             return (root, query, criteriaBuilder) -> {
-                return criteriaBuilder.like(root.get("email"), "%" + request.getAccountId().getEmail() + "%");
+                return criteriaBuilder.like(root.get("email"), "%" + request.getEmail() + "%");
             };
         } else {
             return null;
@@ -28,9 +28,9 @@ public class BookingSpecification {
 
 
     public static Specification<Booking> buildConditionUserName(BookingSearchRequest request) {
-        if (request.getAccountId().getUsername() != null && !"".equals(request.getAccountId().getUsername())) {
+        if (request.getUserName() != null && !"".equals(request.getUserName())) {
             return (root, query, criteriaBuilder) -> {
-                return criteriaBuilder.like(root.get("username"), "%" + request.getAccountId().getUsername() + "%");
+                return criteriaBuilder.like(root.get("username"), "%" + request.getUserName() + "%");
             };
         } else {
             return null;
@@ -39,9 +39,9 @@ public class BookingSpecification {
 
 
     public static Specification<Booking> buildConditionFullName(BookingSearchRequest request) {
-        if (request.getAccountId().getFullName() != null && !"".equals(request.getAccountId().getFullName())) {
+        if (request.getFullName() != null && !"".equals(request.getFullName())) {
             return (root, query, criteriaBuilder) -> {
-                return criteriaBuilder.like(root.get("fullName"), "%" + request.getAccountId().getFullName() + "%");
+                return criteriaBuilder.like(root.get("fullName"), "%" + request.getFullName() + "%");
             };
         } else {
             return null;
@@ -50,9 +50,9 @@ public class BookingSpecification {
 
 
     public static Specification<Booking> buildConditionPhone(BookingSearchRequest request) {
-        if (request.getAccountId().getPhone() != null && !"".equals(request.getAccountId().getPhone())) {
+        if (request.getPhone() != null && !"".equals(request.getPhone())) {
             return (root, query, criteriaBuilder) -> {
-                return criteriaBuilder.like(root.get("phone"), "%" + request.getAccountId().getPhone() + "%");
+                return criteriaBuilder.like(root.get("phone"), "%" + request.getPhone() + "%");
             };
         } else {
             return null;

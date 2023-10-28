@@ -10,17 +10,14 @@ import java.util.Set;
 @Data
 @NoArgsConstructor
 public class BookingSearchRequest extends BaseRequest {
-//    private String email;
-//    private String username;
-//    private String fullname;
-//    private String phone;
-//    private String status;
-//    private String sort;
-//    private int page;
-//    private int size;
 
+    private String email;
 
-    private Account accountId;
+    private String userName;
+
+    private String fullName;
+
+    private String phone;
 
     private Set<BookingStatus> status;
 }

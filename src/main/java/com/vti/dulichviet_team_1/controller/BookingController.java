@@ -33,7 +33,7 @@ public class BookingController {
     }
 
     @PostMapping("/search")
-    public Page<Booking> search(BookingSearchRequest request) {
+    public Page<Booking> search(@RequestBody BookingSearchRequest request) {
         return bookingService.search(request);
     }
 
