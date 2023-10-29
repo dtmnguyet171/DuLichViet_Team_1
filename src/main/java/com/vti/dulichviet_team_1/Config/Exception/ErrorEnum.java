@@ -1,4 +1,4 @@
-package com.vti.dulichviet_team_1.Config.Exception;
+package com.vti.dulichviet_team_1.config.exception;
 
 public enum ErrorEnum {
 

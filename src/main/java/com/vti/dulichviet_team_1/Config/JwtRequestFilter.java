@@ -1,4 +1,4 @@
-package com.vti.dulichviet_team_1.Config;
+package com.vti.dulichviet_team_1.config;
 
 
 import com.vti.dulichviet_team_1.modal.dto.LoginDto;
@@ -40,7 +40,10 @@ public class JwtRequestFilter extends OncePerRequestFilter {
                 || StringUtils.containsAnyIgnoreCase(request, "/api/v1/tour/viewdetail")
                 || StringUtils.containsAnyIgnoreCase(request, "/api/v1/login/login-jwt")
                 || StringUtils.containsAnyIgnoreCase(request, "/api/accounts/create")
-                || StringUtils.containsAnyIgnoreCase(request, "/api/v1/product/search")
+          || StringUtils.containsAnyIgnoreCase(request, "/bookings/search")
+          || StringUtils.containsAnyIgnoreCase(request, "bookings/create-booking")
+
+          || StringUtils.containsAnyIgnoreCase(request, "/api/v1/product/search")
                 || StringUtils.containsAnyIgnoreCase(request, "/swagger-ui")
                 || StringUtils.containsAnyIgnoreCase(request, "/swagger-resources")
                 || StringUtils.containsAnyIgnoreCase(request, "/v3/api-docs")) {

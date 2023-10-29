@@ -22,8 +22,6 @@ public class BookingCreateRequest {
 
     private int tourId;
 
-    private Integer price;
-
     private int guestSize;
 
 

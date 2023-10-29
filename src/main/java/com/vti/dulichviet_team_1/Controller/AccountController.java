@@ -1,6 +1,6 @@
-package com.vti.dulichviet_team_1.Controller;
+package com.vti.dulichviet_team_1.controller;
 
-import com.vti.dulichviet_team_1.Service.impl.AccountService;
+import com.vti.dulichviet_team_1.service.impl.AccountService;
 import com.vti.dulichviet_team_1.modal.entity.Account;
 
 import com.vti.dulichviet_team_1.request.AccountCreateRq;

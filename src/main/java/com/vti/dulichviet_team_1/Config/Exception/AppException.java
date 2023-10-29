@@ -1,12 +1,10 @@
-package com.vti.dulichviet_team_1.Config.Exception;
+package com.vti.dulichviet_team_1.config.exception;
 
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
-import org.intellij.lang.annotations.Pattern;
-import org.springframework.format.annotation.DateTimeFormat;
 
 import java.time.Instant;
 

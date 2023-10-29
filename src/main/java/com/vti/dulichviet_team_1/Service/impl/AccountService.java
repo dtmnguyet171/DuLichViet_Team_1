@@ -1,9 +1,9 @@
-package com.vti.dulichviet_team_1.Service.impl;
+package com.vti.dulichviet_team_1.service.impl;
 
-import com.vti.dulichviet_team_1.Config.Exception.AppException;
-import com.vti.dulichviet_team_1.Config.Exception.ErrorEnum;
+import com.vti.dulichviet_team_1.config.exception.AppException;
+import com.vti.dulichviet_team_1.config.exception.ErrorEnum;
 import com.vti.dulichviet_team_1.Repository.IAccountRepository;
-import com.vti.dulichviet_team_1.Service.IAccountService;
+import com.vti.dulichviet_team_1.service.IAccountService;
 import com.vti.dulichviet_team_1.modal.entity.Account;
 
 import com.vti.dulichviet_team_1.modal.entity.AccountStatus;
