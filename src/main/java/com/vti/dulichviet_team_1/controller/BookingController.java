@@ -39,7 +39,7 @@ public class BookingController {
 
     // thêm mới Booking
     @PostMapping("/create-booking")
-    public ResponseEntity<?> createBooking(BookingCreateRequest bookingCreateRequest) {
+    public ResponseEntity<?> createBooking(@RequestBody BookingCreateRequest bookingCreateRequest) {
         bookingService.createBooking(bookingCreateRequest);
         return new ResponseEntity<>(HttpStatus.CREATED);
     }

@@ -47,7 +47,7 @@ public class WebSecurityConfiguration extends WebSecurityConfigurerAdapter {
                 .antMatchers("/api/v1/tour/create_tour", "/api/v1/tour/update_tour",
                         "/api/v1/tour/delete_tour/*", "/api/accounts/get-all",
                         "/api/accounts/*", "bookings/get-all-booking").hasAuthority("ADMIN")
-                .antMatchers("bookings/create-booking").hasAnyAuthority("USER")
+                .antMatchers("/bookings/create-booking").hasAuthority("USER")
 
 // Config những API phải có Authority là ADMIN hoặc User thì mới được truy cập
                 .antMatchers("bookings/update/*").hasAnyAuthority("ADMIN", "USER")
