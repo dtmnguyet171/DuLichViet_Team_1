@@ -10,6 +10,7 @@ import java.time.LocalDate;
 @Table(name = "`booking`")
 public class Booking {
     @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "`id`")
     private int id;
 
@@ -36,4 +37,6 @@ public class Booking {
 
     @Column(name = "guest_size")
     private Integer guestSize;
+
+
 }

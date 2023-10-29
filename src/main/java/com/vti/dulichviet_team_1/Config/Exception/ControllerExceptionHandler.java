@@ -1,5 +1,5 @@
 
-package com.vti.dulichviet_team_1.Config.Exception;
+package com.vti.dulichviet_team_1.config.exception;
 
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;

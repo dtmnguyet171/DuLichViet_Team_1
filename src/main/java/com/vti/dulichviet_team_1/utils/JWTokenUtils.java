@@ -3,10 +3,9 @@ package com.vti.dulichviet_team_1.utils;
 
 
 
-import antlr.Token;
 import com.alibaba.fastjson.JSON;
 
-import com.vti.dulichviet_team_1.Config.Exception.AppExceptionDto;
+import com.vti.dulichviet_team_1.config.exception.AppExceptionDto;
 import com.vti.dulichviet_team_1.modal.dto.LoginDto;
 import com.vti.dulichviet_team_1.modal.entity.Role;
 import io.jsonwebtoken.Claims;
@@ -15,7 +14,6 @@ import io.jsonwebtoken.SignatureAlgorithm;
 import lombok.extern.slf4j.Slf4j;
 import org.apache.commons.lang3.StringUtils;
 import org.springframework.stereotype.Component;
-import org.springframework.web.bind.annotation.CrossOrigin;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;

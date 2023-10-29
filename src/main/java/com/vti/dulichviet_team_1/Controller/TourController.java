@@ -1,8 +1,8 @@
-package com.vti.dulichviet_team_1.Controller;
+package com.vti.dulichviet_team_1.controller;
 
 
 import com.vti.dulichviet_team_1.repository.TourRepository;
-import com.vti.dulichviet_team_1.Service.TourService;
+import com.vti.dulichviet_team_1.service.TourService;
 import com.vti.dulichviet_team_1.modal.dto.TourRequestCreateDto;
 import com.vti.dulichviet_team_1.modal.dto.TourRequestUpdateDto;
 import com.vti.dulichviet_team_1.modal.dto.ViewListRequestDto;
