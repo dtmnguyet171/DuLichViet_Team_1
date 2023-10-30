@@ -2,7 +2,9 @@ package com.vti.dulichviet_team_1.service.impl;
 
 import com.vti.dulichviet_team_1.config.exception.AppException;
 import com.vti.dulichviet_team_1.config.exception.ErrorEnum;
+import com.vti.dulichviet_team_1.modal.dto.AccountSearchRequest;
 import com.vti.dulichviet_team_1.repository.IAccountRepository;
+import com.vti.dulichviet_team_1.repository.Specification.AccountSpecification;
 import com.vti.dulichviet_team_1.service.IAccountService;
 import com.vti.dulichviet_team_1.modal.entity.Account;
 
@@ -11,6 +13,10 @@ import com.vti.dulichviet_team_1.modal.entity.Role;
 import com.vti.dulichviet_team_1.request.AccountCreateRq;
 import com.vti.dulichviet_team_1.request.AccountUpdateRq;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Sort;
+import org.springframework.data.jpa.domain.Specification;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
@@ -102,7 +108,19 @@ public class AccountService implements IAccountService, UserDetailsService {
     }
     }
 
-    @Override
+  @Override
+  public Page<Account> search(AccountSearchRequest request) {
+    PageRequest pageRequest = null;
+    if ("DESC".equals(request.getSortType())) {
+      pageRequest = PageRequest.of(request.getPage() - 1, request.getSize(), Sort.by(request.getSortField()).descending());
+    } else {
+      pageRequest = PageRequest.of(request.getPage() - 1, request.getSize(), Sort.by(request.getSortField()).descending());
+    }
+    Specification<Account> condition = AccountSpecification.buildCondition(request);
+    return accountRepository.findAll(condition, pageRequest);
+  }
+
+  @Override
     public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
 
         Optional<Account> optionalAccount = accountRepository.findAccountByUsername(username);

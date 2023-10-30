@@ -1,11 +1,14 @@
 package com.vti.dulichviet_team_1.controller;
 
+import com.vti.dulichviet_team_1.modal.dto.AccountSearchRequest;
 import com.vti.dulichviet_team_1.service.impl.AccountService;
 import com.vti.dulichviet_team_1.modal.entity.Account;
 
 import com.vti.dulichviet_team_1.request.AccountCreateRq;
 import com.vti.dulichviet_team_1.request.AccountUpdateRq;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -46,5 +49,10 @@ public class AccountController {
     public void deleteAccount(@PathVariable int id) {
         accountService.deleteAccount(id);
     }
+
+  @PostMapping("/search")
+  public Page<Account> search(@RequestBody AccountSearchRequest request) {
+    return accountService.search(request);
+  }
 
 }
