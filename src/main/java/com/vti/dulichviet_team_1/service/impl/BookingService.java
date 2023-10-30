@@ -1,13 +1,13 @@
-package com.vti.dulichviet_team_1.Service.impl;
+package com.vti.dulichviet_team_1.service.impl;
 
-import com.vti.dulichviet_team_1.Repository.BookingRepository;
-import com.vti.dulichviet_team_1.Repository.IAccountRepository;
-import com.vti.dulichviet_team_1.Repository.TourRepository;
+import com.vti.dulichviet_team_1.repository.BookingRepository;
+import com.vti.dulichviet_team_1.repository.IAccountRepository;
+import com.vti.dulichviet_team_1.repository.TourRepository;
 import com.vti.dulichviet_team_1.modal.entity.Account;
 import com.vti.dulichviet_team_1.modal.entity.Booking;
 import com.vti.dulichviet_team_1.modal.entity.BookingStatus;
 import com.vti.dulichviet_team_1.modal.entity.Tour;
-import com.vti.dulichviet_team_1.repository.Specification.BookingSpecification;
+import com.vti.dulichviet_team_1.repository.specification.BookingSpecification;
 import com.vti.dulichviet_team_1.request.BookingCreateRequest;
 import com.vti.dulichviet_team_1.request.BookingSearchRequest;
 import com.vti.dulichviet_team_1.request.BookingUpdateRequest;
@@ -20,6 +20,7 @@ import org.springframework.data.domain.Sort;
 import org.springframework.data.jpa.domain.Specification;
 import org.springframework.stereotype.Service;
 
+import java.time.LocalDate;
 import java.util.List;
 import java.util.Optional;
 
@@ -70,6 +71,8 @@ public class BookingService implements IBookingService {
             BeanUtils.copyProperties(bookingCreateRequest, booking);
             booking.setAccount(account.get());
             booking.setTour(tour.get());
+            booking.setBookingDate(LocalDate.now());
+            booking.setPrice(tour.get().getPrice() * bookingCreateRequest.getGuestSize());
             booking.setStatus(BookingStatus.CONFIRM);
             booking.setGuestSize(bookingCreateRequest.getGuestSize());
             bookingrepository.save(booking);

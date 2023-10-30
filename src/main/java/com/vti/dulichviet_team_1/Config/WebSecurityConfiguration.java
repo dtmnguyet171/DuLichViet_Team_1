@@ -1,4 +1,5 @@
-package com.vti.dulichviet_team_1.Config;
+package com.vti.dulichviet_team_1.config;
+
 
 
 import com.vti.dulichviet_team_1.service.impl.AccountService;
@@ -39,16 +40,17 @@ public class WebSecurityConfiguration extends WebSecurityConfigurerAdapter {
         http.authorizeRequests()
 // config những API ko cần xác thực
                 .antMatchers("/api/v1/tour/view_list_tour", "/api/accounts/create",
-                        "/api/v1/login/login-jwt").permitAll()
+                        "/api/v1/login/login-jwt", "bookings/search").permitAll()
                 .antMatchers("/api/v1/tour/viewdetail/*").permitAll()
 
 // Config những API phải có Authority là ADMIN thì mới được truy cập
                 .antMatchers("/api/v1/tour/create_tour", "/api/v1/tour/update_tour",
                         "/api/v1/tour/delete_tour/*", "/api/accounts/get-all",
-                        "/api/accounts/*").hasAuthority("ADMIN")
+                        "/api/accounts/*", "bookings/get-all-booking").hasAuthority("ADMIN")
+                .antMatchers("/bookings/create-booking").hasAuthority("USER")
 
 // Config những API phải có Authority là ADMIN hoặc User thì mới được truy cập
-                .antMatchers("api/admin-or-user").hasAnyAuthority("ADMIN", "User")
+                .antMatchers("bookings/update/*").hasAnyAuthority("ADMIN", "USER")
 
                 .anyRequest().authenticated()// Những đường dẫn còn lại cần được xác thực
 

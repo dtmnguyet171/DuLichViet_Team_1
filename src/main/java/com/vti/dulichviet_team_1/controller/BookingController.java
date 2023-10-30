@@ -1,7 +1,7 @@
-package com.vti.dulichviet_team_1.Controller;
+package com.vti.dulichviet_team_1.controller;
 
 
-import com.vti.dulichviet_team_1.Service.impl.BookingService;
+import com.vti.dulichviet_team_1.service.impl.BookingService;
 import com.vti.dulichviet_team_1.modal.entity.Account;
 import com.vti.dulichviet_team_1.modal.entity.Booking;
 
@@ -33,13 +33,13 @@ public class BookingController {
     }
 
     @PostMapping("/search")
-    public Page<Booking> search(BookingSearchRequest request) {
+    public Page<Booking> search(@RequestBody BookingSearchRequest request) {
         return bookingService.search(request);
     }
 
     // thêm mới Booking
     @PostMapping("/create-booking")
-    public ResponseEntity<?> createBooking(BookingCreateRequest bookingCreateRequest) {
+    public ResponseEntity<?> createBooking(@RequestBody BookingCreateRequest bookingCreateRequest) {
         bookingService.createBooking(bookingCreateRequest);
         return new ResponseEntity<>(HttpStatus.CREATED);
     }
