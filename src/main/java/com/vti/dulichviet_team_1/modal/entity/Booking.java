@@ -1,5 +1,6 @@
 package com.vti.dulichviet_team_1.modal.entity;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
 import lombok.Data;
 
 import javax.persistence.*;
@@ -20,6 +21,7 @@ public class Booking {
     @JoinColumn(name = "`account_id`")
     private Account account;
 
+    @JsonBackReference
     @ManyToOne()
     @JoinColumn(name = "`tour_id`")
     private Tour tour;

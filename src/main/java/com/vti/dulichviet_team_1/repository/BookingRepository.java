@@ -18,7 +18,7 @@ public interface BookingRepository extends JpaRepository<Booking, Integer>, JpaS
 
     //    Page<Booking> findByAccountId_EmailAndAccountId_UsernameAndAccountId_FullnameAndAccountId_PhoneAndStatus(
 //            String email, String username, String fullname, String phone, String status, Pageable pageable);
-    List<Booking> findByAccountId(Account account);
+    List<Booking> findByAccount(Account account);
 
     Page<Booking> findByStatus(BookingStatus status, Pageable pageable);
 
