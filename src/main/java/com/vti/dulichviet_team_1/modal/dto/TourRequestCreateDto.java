@@ -41,7 +41,6 @@ public class TourRequestCreateDto {
     private Transport transport;
 
     @NotBlank(message = "The content mustn't be null value")
-    @Length(max = 1000, message = "The content's length is max 200 characters")
     private String content;
 
     @NotBlank(message = "The image mustn't be null value")
