@@ -1,4 +1,4 @@
-package com.vti.dulichviet_team_1.repository.Specification;
+package com.vti.dulichviet_team_1.repository.specification;
 
 import com.vti.dulichviet_team_1.modal.dto.AccountSearchRequest;
 import com.vti.dulichviet_team_1.modal.entity.Account;

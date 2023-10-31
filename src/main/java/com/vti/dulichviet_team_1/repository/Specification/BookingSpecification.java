@@ -1,73 +1,52 @@
 package com.vti.dulichviet_team_1.repository.specification;
 
+import com.vti.dulichviet_team_1.modal.entity.Account;
 import com.vti.dulichviet_team_1.modal.entity.Booking;
-import com.vti.dulichviet_team_1.request.BookingSearchRequest;
+import com.vti.dulichviet_team_1.modal.entity.BookingStatus;
 import org.springframework.data.jpa.domain.Specification;
 
+import javax.persistence.criteria.Join;
+import javax.persistence.criteria.Predicate;
+import java.util.ArrayList;
+import java.util.List;
+
 public class BookingSpecification {
+  // Một phương thức tĩnh tạo ra Specification để lọc các thực thể Booking dựa trên nhiều tham số.
+  public static Specification<Booking> filterByParams(String username, String fullName, String phone, String email, BookingStatus status) {
+    return (root, query, criteriaBuilder) -> {
+      List<Predicate> predicates = new ArrayList<>();
 
-    public static Specification<Booking> buildCondition(BookingSearchRequest request) {
-        return Specification.where(buildCondition(request))
-                .and(buildConditionEmail(request))
-                .and(buildConditionUserName(request))
-                .and(buildConditionFullName(request))
-                .and(buildConditionPhone(request))
-                .and(buildConditionStatus(request));
-    }
+      // Nếu cung cấp username, thêm điều kiện để lọc theo username.
+      if (username != null) {
+        Join<Booking, Account> accountJoin = root.join("account");
+        predicates.add(criteriaBuilder.like(accountJoin.get("username"), "%" + username + "%"));
+      }
 
+      // Nếu cung cấp fullName, thêm điều kiện để lọc theo fullName.
+      if (fullName != null) {
+        Join<Booking, Account> accountJoin = root.join("account");
+        predicates.add(criteriaBuilder.like(accountJoin.get("fullName"), "%" + fullName + "%"));
+      }
 
-    public static Specification<Booking> buildConditionEmail(BookingSearchRequest request) {
-        if (request.getEmail() != null && !"".equals(request.getEmail())) {
-            return (root, query, criteriaBuilder) -> {
-                return criteriaBuilder.like(root.get("email"), "%" + request.getEmail() + "%");
-            };
-        } else {
-            return null;
-        }
-    }
+      // Nếu cung cấp phone, thêm điều kiện để lọc theo phone.
+      if (phone != null) {
+        Join<Booking, Account> accountJoin = root.join("account");
+        predicates.add(criteriaBuilder.like(accountJoin.get("phone"), "%" + phone + "%"));
+      }
 
+      // Nếu cung cấp email, thêm điều kiện để lọc theo email.
+      if (email != null) {
+        Join<Booking, Account> accountJoin = root.join("account");
+        predicates.add(criteriaBuilder.like(accountJoin.get("email"), "%" + email + "%"));
+      }
 
-    public static Specification<Booking> buildConditionUserName(BookingSearchRequest request) {
-        if (request.getUsername() != null && !"".equals(request.getUsername())) {
-            return (root, query, criteriaBuilder) -> {
-                return criteriaBuilder.like(root.get("username"), "%" + request.getUsername() + "%");
-            };
-        } else {
-            return null;
-        }
-    }
+      // Nếu cung cấp status, thêm điều kiện để lọc theo status.
+      if (status != null) {
+        predicates.add(criteriaBuilder.equal(root.get("status"), status));
+      }
 
-
-    public static Specification<Booking> buildConditionFullName(BookingSearchRequest request) {
-        if (request.getFullName() != null && !"".equals(request.getFullName())) {
-            return (root, query, criteriaBuilder) -> {
-                return criteriaBuilder.like(root.get("fullName"), "%" + request.getFullName() + "%");
-            };
-        } else {
-            return null;
-        }
-    }
-
-
-    public static Specification<Booking> buildConditionPhone(BookingSearchRequest request) {
-        if (request.getPhone() != null && !"".equals(request.getPhone())) {
-            return (root, query, criteriaBuilder) -> {
-                return criteriaBuilder.like(root.get("phone"), "%" + request.getPhone() + "%");
-            };
-        } else {
-            return null;
-        }
-    }
-
-
-    public static Specification<Booking> buildConditionStatus(BookingSearchRequest request) {
-        if (request.getStatus() != null && request.getStatus().size() > 0) {
-            return (root, query, criteriaBuilder) -> {
-                return root.get("status").in(request.getStatus());
-            };
-        } else {
-            return null;
-        }
-    }
-
+      // Kết hợp tất cả các điều kiện đã tạo bằng 'AND' và trả về Specification cuối cùng.
+      return criteriaBuilder.and(predicates.toArray(new Predicate[0]));
+    };
+  }
 }

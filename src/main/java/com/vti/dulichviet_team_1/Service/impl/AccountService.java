@@ -4,7 +4,7 @@ import com.vti.dulichviet_team_1.config.exception.AppException;
 import com.vti.dulichviet_team_1.config.exception.ErrorEnum;
 import com.vti.dulichviet_team_1.modal.dto.AccountSearchRequest;
 import com.vti.dulichviet_team_1.repository.IAccountRepository;
-import com.vti.dulichviet_team_1.repository.Specification.AccountSpecification;
+import com.vti.dulichviet_team_1.repository.specification.AccountSpecification;
 import com.vti.dulichviet_team_1.service.IAccountService;
 import com.vti.dulichviet_team_1.modal.entity.Account;
 
