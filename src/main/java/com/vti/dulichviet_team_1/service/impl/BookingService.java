@@ -1,6 +1,7 @@
-package com.vti.dulichviet_team_1.service.impl;
+package com.vti.dulichviet_team_1.Service.impl;
 
-import com.vti.dulichviet_team_1.repository.BookingRepository;
+import com.vti.dulichviet_team_1.Repository.BookingRepository;
+import com.vti.dulichviet_team_1.modal.dto.TourBookingCount;
 import com.vti.dulichviet_team_1.repository.IAccountRepository;
 import com.vti.dulichviet_team_1.repository.TourRepository;
 import com.vti.dulichviet_team_1.modal.entity.Account;
@@ -21,6 +22,7 @@ import org.springframework.data.jpa.domain.Specification;
 import org.springframework.stereotype.Service;
 
 import java.time.LocalDate;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
@@ -152,6 +154,55 @@ public class BookingService implements IBookingService {
         return bookingrepository.findByAccountId(account);
     }
 
+//    hien thi danh sach booking theo nam
+    @Override
+    public List<Booking> getBookingInYear(int year) {
+        LocalDate startDate = LocalDate.of(year, 1, 1);
+        LocalDate endDate = LocalDate.of(year, 12, 31);
+        return bookingrepository.findByBookingDateBetween(startDate, endDate);
+    }
+
+    // tính tổng số tiền theo tháng và năm
+    @Override
+    public List<Double> revenueByMonth(int year) {
+        List<Double> monthlyRevenues = new ArrayList<>();
+
+        for (int month = 1; month <= 12; month++) {
+            LocalDate startDate = LocalDate.of(year, month, 1);
+            LocalDate endDate = startDate.plusMonths(1).minusDays(1);
+            List<Booking> bookingsInMonth = bookingrepository.findByBookingDateBetween(startDate, endDate);
+
+            double totalRevenue = 0.0;
+            for (Booking booking : bookingsInMonth) {
+                totalRevenue += booking.getPrice();
+            }
+
+            monthlyRevenues.add(totalRevenue);
+        }
+
+        return monthlyRevenues;
+    }
+
+    // tinh tong so tien theo thang va nam
+//    @Override
+//    public double manyToMonth(int year, int month) {
+//        LocalDate startDate = LocalDate.of(year, month, 1);
+//        LocalDate endDate = startDate.plusMonths(1).minusDays(1);
+//        List<Booking> bookingInMonth = bookingrepository.findByBookingDateBetween(startDate, endDate);
+//
+//        double totalAmouth = 0.0; //gia tri ban dau
+//        for ( Booking booking: bookingInMonth) {
+//            totalAmouth += booking.getPrice();
+//        }
+//        return totalAmouth;
+//    }
+
+
+    @Override
+    public List<TourBookingCount> getMostBookedTours() {
+        return bookingrepository.getMostBookedTours();
+    }
+
 
 //    @Override
 //    public Page<Booking> finBookings( BookingSearch bookingSearch) {
@@ -174,6 +225,14 @@ public class BookingService implements IBookingService {
 //    public Page<Booking> getAllBookingsWithStatus(BookingStatus status, Pageable pageable) {
 //        return bookingrepository.findByStatus(status, pageable);
 //    }
+
+
+
+
+
+
+
+
 }
 
 

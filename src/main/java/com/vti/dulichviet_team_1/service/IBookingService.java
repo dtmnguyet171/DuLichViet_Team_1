@@ -1,6 +1,7 @@
 package com.vti.dulichviet_team_1.service;
 
 
+import com.vti.dulichviet_team_1.modal.dto.TourBookingCount;
 import com.vti.dulichviet_team_1.modal.entity.Account;
 import com.vti.dulichviet_team_1.modal.entity.Booking;
 import com.vti.dulichviet_team_1.request.BookingCreateRequest;
@@ -27,6 +28,17 @@ public interface IBookingService {
     List<Booking> getBookingHistoryByAccount(Account account);
 
 //    Page<Booking> finBookings(BookingSearch bookingSearch);
+
+    //tìm kiếm danh sach booking theo năm
+    List<Booking> getBookingInYear(int year);
+
+    List<Double> revenueByMonth(int year);
+
+    //Tinh tong so tien da booking theo thang va nam
+//    double manyToMonth(int year, int month);
+
+    // tinh tour duoc booking nhieu nhat
+    List<TourBookingCount> getMostBookedTours();
 
 
 //
