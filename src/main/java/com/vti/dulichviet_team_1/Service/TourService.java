@@ -1,8 +1,8 @@
 package com.vti.dulichviet_team_1.service;
 
 
+import com.vti.dulichviet_team_1.repository.Specification.TourSpecification;
 import com.vti.dulichviet_team_1.repository.TourRepository;
-import com.vti.dulichviet_team_1.repository.specification.TourSpecification;
 import com.vti.dulichviet_team_1.modal.dto.TourRequestCreateDto;
 import com.vti.dulichviet_team_1.modal.dto.TourRequestUpdateDto;
 import com.vti.dulichviet_team_1.modal.dto.ViewListRequestDto;
@@ -22,7 +22,7 @@ import java.util.Optional;
 
 @Service
 @AllArgsConstructor
-public class TourService implements ITourService {
+public class TourService implements com.vti.dulichviet_team_1.service.ITourService {
 
     @Autowired
     private final TourRepository tourRepository;

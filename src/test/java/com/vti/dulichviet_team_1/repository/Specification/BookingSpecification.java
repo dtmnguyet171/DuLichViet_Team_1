@@ -1,4 +1,4 @@
-package com.vti.dulichviet_team_1.repository.specification;
+package com.vti.dulichviet_team_1.repository.Specification;
 
 import com.vti.dulichviet_team_1.modal.entity.Booking;
 import com.vti.dulichviet_team_1.request.BookingSearchRequest;

@@ -4,6 +4,8 @@ import com.vti.dulichviet_team_1.modal.entity.BookingStatus;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
+import java.util.Set;
+
 @Data
 @NoArgsConstructor
 public class BookingSearchRequest {
@@ -11,5 +13,5 @@ public class BookingSearchRequest {
   private String fullName;
   private String phone;
   private String email;
-  private BookingStatus status ;
+  private Set<BookingStatus> status ;
 }
