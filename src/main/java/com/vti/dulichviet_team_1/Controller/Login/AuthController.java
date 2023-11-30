@@ -1,4 +1,4 @@
-package com.vti.dulichviet_team_1.controller.login;
+package com.vti.dulichviet_team_1.Controller.Login;
 
 import com.vti.dulichviet_team_1.config.exception.AppException;
 import com.vti.dulichviet_team_1.config.exception.ErrorEnum;

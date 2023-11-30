@@ -9,10 +9,11 @@ import javax.persistence.criteria.Join;
 import javax.persistence.criteria.Predicate;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Set;
 
 public class BookingSpecification {
   // Một phương thức tĩnh tạo ra Specification để lọc các thực thể Booking dựa trên nhiều tham số.
-  public static Specification<Booking> filterByParams(String username, String fullName, String phone, String email, BookingStatus status) {
+  public static Specification<Booking> filterByParams(String username, String fullName, String phone, String email, Set<BookingStatus> status) {
     return (root, query, criteriaBuilder) -> {
       List<Predicate> predicates = new ArrayList<>();
 

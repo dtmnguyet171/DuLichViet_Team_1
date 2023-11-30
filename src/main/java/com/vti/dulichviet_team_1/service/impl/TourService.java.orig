@@ -1,7 +1,11 @@
 package com.vti.dulichviet_team_1.service.impl;
 
 
+<<<<<<< HEAD:src/main/java/com/vti/dulichviet_team_1/Service/impl/TourService.java
 import com.vti.dulichviet_team_1.modal.entity.TourStatus;
+=======
+import com.vti.dulichviet_team_1.repository.Specification.TourSpecification;
+>>>>>>> 2dd63bf64c29553aaf81a10df8313dcb145af828:src/main/java/com/vti/dulichviet_team_1/Service/TourService.java
 import com.vti.dulichviet_team_1.repository.TourRepository;
 import com.vti.dulichviet_team_1.modal.dto.TourRequestCreateDto;
 import com.vti.dulichviet_team_1.modal.dto.TourRequestUpdateDto;
