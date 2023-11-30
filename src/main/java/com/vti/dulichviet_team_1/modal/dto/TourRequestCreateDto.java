@@ -17,7 +17,7 @@ import javax.validation.constraints.Pattern;
 public class TourRequestCreateDto {
 
     @NotBlank(message = " The title mustn't be null value")
-    @Length(max = 100, message = "The title's length is max 100 characters")
+    @Length(max = 200, message = "The title's length is max 100 characters")
     private String title;
 
 
@@ -41,7 +41,6 @@ public class TourRequestCreateDto {
     private Transport transport;
 
     @NotBlank(message = "The content mustn't be null value")
-    @Length(max = 1000, message = "The content's length is max 200 characters")
     private String content;
 
     @NotBlank(message = "The image mustn't be null value")

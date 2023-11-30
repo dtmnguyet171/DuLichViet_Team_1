@@ -1,12 +1,9 @@
 package com.vti.dulichviet_team_1.service.impl;
 
+import com.vti.dulichviet_team_1.modal.entity.*;
 import com.vti.dulichviet_team_1.repository.BookingRepository;
 import com.vti.dulichviet_team_1.repository.IAccountRepository;
 import com.vti.dulichviet_team_1.repository.TourRepository;
-import com.vti.dulichviet_team_1.modal.entity.Account;
-import com.vti.dulichviet_team_1.modal.entity.Booking;
-import com.vti.dulichviet_team_1.modal.entity.BookingStatus;
-import com.vti.dulichviet_team_1.modal.entity.Tour;
 import com.vti.dulichviet_team_1.repository.specification.BookingSpecification;
 import com.vti.dulichviet_team_1.request.BookingCreateRequest;
 import com.vti.dulichviet_team_1.request.BookingSearchRequest;
@@ -59,7 +56,7 @@ public class BookingService implements IBookingService {
       booking.setAccount(account.get());
       booking.setTour(tour.get());
       booking.setBookingDate(LocalDate.now());
-      booking.setPrice(tour.get().getPrice());
+      booking.setPrice(tour.get().getPrice() * bookingCreateRequest.getGuestSize());
       booking.setStatus(BookingStatus.CONFIRM);
       booking.setGuestSize(bookingCreateRequest.getGuestSize());
       bookingrepository.save(booking);
@@ -68,6 +65,9 @@ public class BookingService implements IBookingService {
       int updateMaxGroupSize = tour.get().getMaxGuestSize() - bookingCreateRequest.getGuestSize();
       // luu lai xuong database
       tour.get().setMaxGuestSize(updateMaxGroupSize);
+      if (tour.get().getMaxGuestSize() == 0) {
+        tour.get().setStatus(TourStatus.UNAVAILABLE);
+      }
       tourRepository.save(tour.get());
     } else {
       throw new RuntimeException("Không thể đặt tour vì số lượng booking đã vượt quá số lượng slot còn trống ");

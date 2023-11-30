@@ -1,4 +1,4 @@
-package com.vti.dulichviet_team_1.service;
+package com.vti.dulichviet_team_1.service.impl;
 
 
 import com.vti.dulichviet_team_1.modal.entity.TourStatus;
@@ -8,6 +8,7 @@ import com.vti.dulichviet_team_1.modal.dto.TourRequestCreateDto;
 import com.vti.dulichviet_team_1.modal.dto.TourRequestUpdateDto;
 import com.vti.dulichviet_team_1.modal.dto.ViewListRequestDto;
 import com.vti.dulichviet_team_1.modal.entity.Tour;
+import com.vti.dulichviet_team_1.service.ITourService;
 import lombok.AllArgsConstructor;
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;

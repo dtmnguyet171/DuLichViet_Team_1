@@ -19,7 +19,7 @@ public class TourRequestUpdateDto {
     private int id;
 
     @NotBlank(message = " The title mustn't be null value")
-    @Length(max = 100, message = "The title's length is max 100 characters")
+    @Length(max = 200, message = "The title's length is max 200 characters")
     private String title;
 
 //    @Pattern(regexp = "HOT_TOUR | TEAM_BUILDING | HOLIDAY | SHORT_TOUR")
@@ -40,7 +40,6 @@ public class TourRequestUpdateDto {
     private Transport transport;
 
     @NotBlank(message = "The content mustn't be null value")
-    @Length(max = 200, message = "The content's length is max 100 characters")
     private String content;
     @NotBlank(message = "The image mustn't be null value")
 
